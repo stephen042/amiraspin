@@ -108,11 +108,13 @@
         <div class="form-group" style="padding-bottom: 1rem;">
             <div style="flex: 1; min-width: 250px;">
                 <span class="module-title" style="margin-bottom: 0.5rem; display: block;">Spin Limit</span>
-                <div style="display: flex; gap: 0.5rem; align-items: center;">
-                    <input type="number" wire:model="total_spins" class="premium-input">
+                <!-- Added flex-wrap: wrap to the container -->
+                <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+                    <input type="number" wire:model="total_spins" class="premium-input"
+                        style="flex: 1; min-width: 150px;">
 
                     <button wire:click="updateAllocation" wire:loading.attr="disabled" class="btn-solid"
-                        style="position: relative; min-width: 100px;">
+                        style="position: relative; min-width: 100px; flex-grow: 1;">
                         <span wire:loading.remove wire:target="updateAllocation">
                             Update
                         </span>
@@ -157,17 +159,20 @@
         <div class="form-group" style="padding-top: 0;">
             <div style="flex: 1; min-width: 250px;">
                 <span class="module-title" style="margin-bottom: 0.5rem; display: block;">Queue Manual Override</span>
-                <div style="display: flex; gap: 0.5rem;">
-                    <select wire:model="selected_prize_index" class="premium-input">
+                <!-- Added flex-wrap: wrap to the container -->
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                    <select wire:model="selected_prize_index" class="premium-input"
+                        style="flex: 1; min-width: 200px;">
                         @foreach ($prizes as $index => $prize)
                             <option value="{{ $index }}">
                                 {{ $prize['icon'] }} {{ $prize['label'] }}
                             </option>
                         @endforeach
                     </select>
+
                     <button wire:click="addSpinResult" wire:loading.attr="disabled" wire:target="addSpinResult"
                         class="btn-solid"
-                        style="min-width: 140px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                        style="min-width: 140px; flex-grow: 1; display: flex; align-items: center; justify-content: center; gap: 8px;">
                         <span wire:loading.remove wire:target="addSpinResult">
                             Add to Queue
                         </span>
