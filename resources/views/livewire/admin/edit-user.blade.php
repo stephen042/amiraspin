@@ -227,7 +227,7 @@
                     <tr>
                         <th>TimeStamp</th>
                         <th>Event</th>
-                        <th>Asset Preview</th>
+                        <th style="text-align: center;">Asset Preview</th>
                         <th style="text-align: right;">Net Profit</th>
                     </tr>
                 </thead>
@@ -236,6 +236,7 @@
                         @php
                             // Logic to determine row style based on result type
                             $isJackpot = $history->result_label === 'TESLA CAR';
+                            $isGoldBar = str_contains($history->result_label, 'GOLD BAR');
                             $isLoss = $history->amount <= 0;
                         @endphp <tr
                             class="group transition-all duration-300 {{ $isJackpot ? 'hover:translate-y-[-2px]' : 'hover:bg-white/[0.02]' }}"
@@ -264,6 +265,11 @@
                                         style="background: rgba(161, 161, 170, 0.1); color: #e48b8b; padding: 4px 12px; border-radius: 8px; font-size: 9px; font-weight: 900;">
                                         LOSS
                                     </span>
+                                @elseif($isGoldBar)
+                                    <span
+                                        style="background: rgba(234, 179, 8, 0.1); color: #eab308; padding: 4px 12px; border-radius: 8px; font-size: 9px; font-weight: 900; border: 1px solid rgba(234, 179, 8, 0.2);">
+                                        GOLD BAR WIN
+                                    </span>
                                 @else
                                     <span
                                         style="background: rgba(34, 197, 94, 0.1); color: #22c55e; padding: 4px 12px; border-radius: 8px; font-size: 9px; font-weight: 900; border: 1px solid rgba(34, 197, 94, 0.2);">
@@ -284,7 +290,10 @@
                                             $imageLink = asset('assets/images/beastimages/tesla.jpg');
                                         } elseif ($isLoss) {
                                             $imageLink = asset('assets/images/beastimages/lostcash.jpg');
-                                        } else {
+                                        } elseif ($isGoldBar) {
+                                            $imageLink = asset('assets/images/beastimages/gold.jpg');
+                                        }
+                                         else {
                                             $imageLink = asset('assets/images/beastimages/cash.jpg');
                                         }
                                     @endphp
@@ -303,6 +312,11 @@
                                         JACKPOT</div>
                                     <div style="font-size: 10px; opacity: 0.6;">Asset:
                                         {{ $history->result_label }}</div>
+                                @elseif($isGoldBar)
+                                    <div
+                                        style="font-size: 16px; font-weight: 800; color: #eab308; {{ $isLoss ? 'opacity: 0.8;' : '' }}">
+                                        {{ $isLoss ? '-' : '' }}{{ number_format(abs($history->amount), 0) }}
+                                    </div>
                                 @else
                                     <div
                                         style="font-size: 16px; font-weight: 800; color: {{ $isLoss ? '#ea3737' : '#22c55e' }}; {{ $isLoss ? 'opacity: 0.8;' : '' }}">
