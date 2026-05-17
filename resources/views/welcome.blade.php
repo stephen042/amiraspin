@@ -302,10 +302,10 @@
             <div class="max-w-4xl mx-auto">
                 <h2 class="text-4xl font-extrabold mb-4 text-slate-900">See It In <span
                         class="text-orange-500">Action</span></h2>
-                <p class="text-slate-500 mb-10">Watch how Easy it is to start winning on BeastSpin.</p>
+                <p class="text-slate-500 mb-10">Watch how Easy it is to start winning on {{ env('APP_NAME') }}.</p>
 
                 <div class="video-container shadow-2xl shadow-slate-300">
-                    <iframe src="{{ asset('assets/videos/video.mp4') }}" title="BeastSpin Tutorial" frameborder="0"
+                    <iframe src="{{ asset('assets/videos/video.mp4') }}" title="{{ env('APP_NAME') }} Tutorial" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
                 </div>
