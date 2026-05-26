@@ -31,7 +31,7 @@
             />
 
             <!-- wincode  -->
-            <flux:input
+            {{-- <flux:input
                 name="wincode"
                 :label="__('Wincode')"
                 :value="old('wincode')"
@@ -39,7 +39,7 @@
                 required
                 autocomplete="wincode"
                 :placeholder="__('')"
-            />
+            /> --}}
 
             <!-- Password -->
             <flux:input
